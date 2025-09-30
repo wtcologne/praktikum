@@ -24,7 +24,7 @@ export default function LoginPage() {
         : await signUpWithEmail(email, password)
 
       if (error) {
-        setError(error.message)
+        setError(error.message || 'An error occurred')
       } else if (data.user) {
         if (!isLogin) {
           // After sign-up, create profile

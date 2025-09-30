@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Praktikum App
 
-## Getting Started
+Eine Next.js 14 App für die Verwaltung von Beobachtungsbögen und Journal-Einträgen während des Praktikums.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Beobachtungsbögen**: Dynamische Tabellen mit Zeit, Beschreibung und Kommentaren
+- **Journal**: Persönliche Einträge mit Stimmungs- und Anstrengungsskala
+- **Supabase Integration**: Sichere Authentifizierung und Datenverwaltung
+- **Responsive Design**: Mobilfreundliche Benutzeroberfläche
+- **TypeScript**: Vollständig typisiert für bessere Entwicklererfahrung
+
+## Technologie-Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Supabase
+- React 19
+
+## Setup
+
+1. **Dependencies installieren:**
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables konfigurieren:**
+   Erstelle eine `.env.local` Datei im Root-Verzeichnis:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+   ```
+
+3. **Development Server starten:**
+   ```bash
+   npm run dev
+   ```
+
+4. **App öffnen:**
+   Öffne [http://localhost:3000](http://localhost:3000) in deinem Browser.
+
+## Projektstruktur
+
+```
+src/
+├── app/                    # Next.js App Router Seiten
+│   ├── dashboard/          # Dashboard mit Kacheln
+│   ├── login/             # Anmelde-/Registrierungsseite
+│   ├── observations/       # Beobachtungsbögen
+│   │   ├── new/           # Neue Beobachtung erstellen
+│   │   └── [id]/          # Beobachtung anzeigen
+│   ├── journal/           # Journal-Einträge
+│   │   ├── new/           # Neuen Eintrag erstellen
+│   │   └── [id]/          # Eintrag anzeigen
+│   └── layout.tsx         # Root Layout
+├── components/             # Wiederverwendbare Komponenten
+│   ├── ObservationTable.tsx  # Dynamische Beobachtungstabelle
+│   └── JournalEditor.tsx     # Journal-Editor mit Slidern
+└── lib/
+    └── supabase.ts        # Supabase Client Konfiguration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Komponenten
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ObservationTable
+- Dynamische Tabelle mit hinzufügen/entfernen von Zeilen
+- Spalten: Zeit (min), Was ist passiert?, Kommentar
+- Read-only Modus für Detailansichten
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### JournalEditor
+- Textarea für Inhalt
+- Slider für Stimmung (1-5)
+- Slider für Anstrengung (1-5)
+- Checkbox "Mit Betreuer:in teilen"
+- Read-only Modus für Detailansichten
 
-## Learn More
+## Supabase Integration
 
-To learn more about Next.js, take a look at the following resources:
+Die App ist vorbereitet für Supabase CRUD-Operationen. Aktuell werden Mock-Daten verwendet, aber die Struktur ist so aufgebaut, dass Supabase-Integration einfach hinzugefügt werden kann.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Geplante Supabase Tabellen:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**observations**
+- id (uuid, primary key)
+- title (text)
+- user_id (uuid, foreign key)
+- rows (jsonb) - Array der ObservationRow Objekte
+- created_at (timestamp)
+- updated_at (timestamp)
 
-## Deploy on Vercel
+**journal_entries**
+- id (uuid, primary key)
+- content (text)
+- mood (integer, 1-5)
+- effort (integer, 1-5)
+- share_with_supervisor (boolean)
+- user_id (uuid, foreign key)
+- created_at (timestamp)
+- updated_at (timestamp)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Development Server
+npm run dev
+
+# Build für Production
+npm run build
+
+# Production Server
+npm start
+
+# Linting
+npm run lint
+```
+
+## Deployment
+
+Die App kann auf Vercel, Netlify oder anderen Next.js-kompatiblen Plattformen deployed werden. Vergiss nicht, die Environment Variables in deinem Deployment-Service zu konfigurieren.

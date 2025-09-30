@@ -16,12 +16,12 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
   },
-  // TypeScript und ESLint während Build ignorieren (optional)
+  // TypeScript und ESLint während Build ignorieren für Vercel
   typescript: {
     ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
 };
 

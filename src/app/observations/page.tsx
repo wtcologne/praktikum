@@ -100,11 +100,11 @@ export default function ObservationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-4">
             <Breadcrumbs 
               items={[
                 { label: 'Dashboard', href: '/dashboard' },
@@ -112,32 +112,36 @@ export default function ObservationsPage() {
               ]}
               className="text-base"
             />
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
               {selectedIds.size > 0 && (
                 <>
                   <button
                     onClick={handleExportSelected}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-2xl text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+                    className="btn-mobile inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-2xl text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    {selectedIds.size} {selectedIds.size === 1 ? 'PDF' : 'PDFs'} exportieren
+                    <span className="hidden sm:inline">{selectedIds.size} {selectedIds.size === 1 ? 'PDF' : 'PDFs'} exportieren</span>
+                    <span className="sm:hidden">{selectedIds.size} PDFs</span>
                   </button>
                   <button
                     onClick={() => setSelectedIds(new Set())}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+                    className="btn-mobile inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                   >
-                    Auswahl aufheben
+                    <span className="hidden sm:inline">Auswahl aufheben</span>
+                    <span className="sm:hidden">Abbrechen</span>
                   </button>
                 </>
               )}
-              <BackButton href="/dashboard" />
-              <LogoutButton showEmail />
+              <div className="flex space-x-2">
+                <BackButton href="/dashboard" />
+                <LogoutButton showEmail />
+              </div>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Beobachtungsbögen</h1>
-          <p className="mt-2 text-gray-600">Verwalte deine Beobachtungen und Notizen</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Beobachtungsbögen</h1>
+          <p className="mt-2 text-sm sm:text-base text-gray-600">Verwalte deine Beobachtungen und Notizen</p>
         </div>
 
         {/* Observations List */}
@@ -163,7 +167,7 @@ export default function ObservationsPage() {
         ) : (
           <div className="space-y-6">
             {/* Select All Checkbox */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="card-mobile bg-white rounded-lg shadow-sm border border-gray-200 p-4">
               <label className="flex items-center space-x-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -171,7 +175,7 @@ export default function ObservationsPage() {
                   onChange={toggleAll}
                   className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-mobile font-medium text-gray-700">
                   Alle auswählen ({observations.length} {observations.length === 1 ? 'Beobachtung' : 'Beobachtungen'})
                 </span>
               </label>
@@ -195,10 +199,10 @@ export default function ObservationsPage() {
             {observations.map((observation) => (
               <div
                 key={observation.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200"
+                className="card-mobile bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200"
               >
-                <div className="p-6">
-                  <div className="flex items-start justify-between">
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                       <div className="flex items-start space-x-4 flex-1">
                         <input
                           type="checkbox"
@@ -222,23 +226,23 @@ export default function ObservationsPage() {
                           </p>
                         )}
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                                <Link
                                  href={`/observations/${observation.id}`}
-                                 className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
+                                 className="btn-mobile inline-flex items-center justify-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
                                >
                                  Ansehen
                                </Link>
                                <Link
                                  href={`/observations/${observation.id}?edit=true`}
-                                 className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
+                                 className="btn-mobile inline-flex items-center justify-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
                                >
                                  Bearbeiten
                                </Link>
                         <button
                           onClick={() => handleDelete(observation.id, `${observation.school} - ${observation.grade}`)}
                           disabled={deleting === observation.id}
-                          className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+                          className="btn-mobile inline-flex items-center justify-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
                         >
                           {deleting === observation.id ? (
                             <>

@@ -145,14 +145,17 @@ export default function JournalDetailPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <Breadcrumbs 
-              items={[
-                { label: 'Dashboard', href: '/dashboard' },
-                { label: 'Journal', href: '/journal' },
-                { label: 'Eintrag' }
-              ]} 
-            />
+          <Breadcrumbs 
+            items={[
+              { label: 'Dashboard', href: '/dashboard' },
+              { label: 'Journal', href: '/journal' },
+              { label: 'Eintrag' }
+            ]} 
+          />
+          
+          {/* Action Buttons */}
+          <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <BackButton href="/journal" />
             <div className="flex items-center space-x-3">
               {!editing ? (
                 <div className="flex space-x-2">

@@ -142,27 +142,53 @@ export default function Calendar() {
   return (
     <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200/50 p-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 gap-4">
         <h2 className="text-2xl font-bold text-gray-900">
           {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h2>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => navigateMonth('prev')}
-            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
-          >
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={() => navigateMonth('next')}
-            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
-          >
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+        
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          {/* Action Buttons */}
+          <div className="flex gap-3">
+            <Link
+              href="/observations/new"
+              className="group flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Neue Beobachtung
+            </Link>
+            <Link
+              href="/journal/new"
+              className="group flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-semibold rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Neuer Eintrag
+            </Link>
+          </div>
+          
+          {/* Navigation Buttons */}
+          <div className="flex space-x-2">
+            <button
+              onClick={() => navigateMonth('prev')}
+              className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+            >
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => navigateMonth('next')}
+              className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+            >
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 

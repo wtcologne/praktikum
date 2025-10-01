@@ -43,18 +43,12 @@ export default function Home() {
         </div>
 
         <div className="text-center space-y-6">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/login"
               className="group relative px-8 py-4 border border-transparent text-lg font-semibold rounded-2xl text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
             >
               Jetzt anmelden
-            </Link>
-            <Link
-              href="/dashboard"
-              className="group relative px-8 py-4 border border-gray-300 text-lg font-semibold rounded-2xl text-gray-700 bg-white/70 backdrop-blur-sm hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
-            >
-              Demo ansehen
             </Link>
           </div>
           

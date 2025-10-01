@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { getCurrentUser } from '@/lib/supabase-client'
 import LogoutButton from '@/components/LogoutButton'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Calendar from '@/components/Calendar'
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null)
@@ -49,6 +50,11 @@ export default function DashboardPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8 flex items-start justify-end">
           <LogoutButton showEmail />
+        </div>
+
+        {/* Calendar Section */}
+        <div className="mb-16">
+          <Calendar />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
